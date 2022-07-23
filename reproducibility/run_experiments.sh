@@ -19,6 +19,7 @@ FIGARO_CODE_PATH=$FIGARO_PATH/figaro-code
 FIGARO_DATA_PATH=$FIGARO_PATH/data
 FIGARO_SYSTEMS_TESTS_PATH=$FIGARO_CODE_PATH/system_tests
 FIGARO_SCRIPTS_PATH=$FIGARO_CODE_PATH/scripts
+FIGARO_EXP_RES_PATH=$FIGARO_SCRIPTS_PATH/results
 FIGARO_PSQL_USER=zivanovic
 FIGARO_PSQL_PASSWORD=12345
 NUMPY_PATH=/home/zivanovic
@@ -55,5 +56,9 @@ for i in {1..4}
 do
 	python -m evaluation.experiment -u $FIGARO_PSQL_USER -p $FIGARO_PSQL_PASSWORD -r $FIGARO_CODE_PATH -s $FIGARO_SYSTEMS_TESTS_PATH -e $i
 done
-
-
+cd $FIGARO_EXP_RES_PATH
+cd non-ohe
+gnuplot ../../gnuplots/exp1perf.plot
+gnuplot ../../gnuplots/exp2cores.plot
+cd ../ohe
+gnuplot ../../gnuplots/exp2perf.plot
