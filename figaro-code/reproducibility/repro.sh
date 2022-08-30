@@ -1,5 +1,5 @@
 ########### Clonning scripts ###########
-git clone --branch Sigmod-2022-Repro https://github.com/Sigmod2022ReproFigaro/figaro.git
+git clone --branch main-branch https://github.com/Sigmod2022ReproFigaro/figaro.git
 mv "figaro-code/reproducibility/"* .
 find . -iname \*.sh -print0 | xargs -r0 chmod 777
 ####### Old container removal
