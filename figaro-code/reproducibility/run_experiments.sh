@@ -15,7 +15,7 @@ sudo chown zivanovic $FIGARO_DUMP_PATH
 ln -s $FIGARO_DATA_PATH ${FIGARO_PATH}/data
 
 ############## Path setup ################
-FIGARO_CODE_PATH=$FIGARO_PATH/figaro-code
+FIGARO_CODE_PATH=$FIGARO_PATH/figaro/figaro-code
 FIGARO_DATA_PATH=$FIGARO_PATH/data
 FIGARO_SYSTEMS_TESTS_PATH=$FIGARO_CODE_PATH/system_tests
 FIGARO_SCRIPTS_PATH=$FIGARO_CODE_PATH/scripts
