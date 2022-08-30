@@ -1,7 +1,7 @@
 ########### Clonning scripts ###########
-#git clone --branch Sigmod-2022-Repro https://github.com/Sigmod2022ReproFigaro/figaro.git
-#mv "figaro-code/reproducibility/"* .
-#find . -iname \*.sh -print0 | xargs -r0 chmod 777
+git clone --branch Sigmod-2022-Repro https://github.com/Sigmod2022ReproFigaro/figaro.git
+mv "figaro-code/reproducibility/"* .
+find . -iname \*.sh -print0 | xargs -r0 chmod 777
 ####### Old container removal
 DOCK_OLD_CID=`docker ps -a | tail -1 | awk '{print $NF}'`
 docker stop $DOCK_OLD_CID && docker rm $DOCK_OLD_CID
@@ -30,3 +30,4 @@ docker cp run_experiments.sh $DOCK_CID:/$HOME_PATH/run_experiments.sh
 
 docker exec --user zivanovic -ti $DOCK_CID bash $HOME_PATH/library_setup.sh | tee log_lib_setup.txt
 docker exec --user zivanovic -ti $DOCK_CID bash $HOME_PATH/run_experiments.sh | tee log_run_exp.txt
+docker cp $DOCK_CID:/home/zivanovic/Figaro/figaro-code/scripts/results ./plots
