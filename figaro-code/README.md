@@ -31,8 +31,8 @@ This folder contains code for running numpy + (mkl or openblas).
 The directory system_tests contains the configuration files used in running each of the experiments. It has the following subfolders.
 
 - systems: contains configuration files for the systems that are used in the experiments, including psql, numpy+mkl and figaro.
-- test_accuracy_car_prod: contains the configuration files for testing the accuracy for synthetic data.
-- test_cartesian_product: contains the configuration files for testing performance for synthetic data.
+- test_syn_accur: contains the configuration files for testing the accuracy for synthetic data.
+- test_syn_perf: contains the configuration files for testing performance for synthetic data.
 - test_real_data: contains the configuration files for experiments over real datasets.
 - test_real_data_ohe: contains the configuration files for experiments over real datasets where one of join attributes is one hot encoded.
 
