@@ -1,7 +1,7 @@
 The code and data provided in our repository are to be used exclusively for the purpose of reproducibility. They are not to be used in a different setting, for academic papers or industry setting without our explicit consent. Intruction details follow.\
 Required OS: Linux.\
 Required apps: Docker, bash.\
-Required machine: at least 500 GiB of free disk space, 192GiB of RAM, 24 physical/48 logical cores. Not all experiments require this. Checkout [Figaro](figaro-code/README.MD) for more.
+Required machine: at least 500 GiB of free disk space, 192GiB of RAM, 24 physical/48 logical cores. Not all experiments require this. Checkout [Figaro](figaro-code/README.md) for more.
 
 - Download file figaro-code/reproducibility/repro.sh to your machine. 
 - Update DOCKER_DATA_PATH, DOCKER_DUMP_PATH, DOCKER_POSTGRES_PATH in the repro.sh script so they point to the appropriate paths on the local machine. These paths should have 500GB of free storage in total. For example (this is on our machine):
