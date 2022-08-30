@@ -1,6 +1,6 @@
 ########### Clonning scripts ###########
 git clone --branch main-branch https://github.com/Sigmod2022ReproFigaro/figaro.git
-mv "figaro-code/reproducibility/"* .
+mv "figaro/figaro-code/reproducibility/"* .
 find . -iname \*.sh -print0 | xargs -r0 chmod 777
 ####### Old container removal
 DOCK_OLD_CID=`docker ps -a | tail -1 | awk '{print $NF}'`
