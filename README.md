@@ -1,7 +1,7 @@
 The code and data provided in our repository are to be used exclusively for the purpose of reproducibility. They are not to be used in a different setting, for academic papers or industry setting without our explicit consent. Intruction details follow.\
 Required OS: Linux.\
 Required apps: Docker, bash.\
-Required machine: at least 500 GB of free disk space, 192GiB of RAM, 24 physical/48 logical cores. Not all experiments require this. Checkout [Figaro](figaro-code/figaro/README.MD) for more.
+Required machine: at least 500 GB of free disk space, 192GiB of RAM, 24 physical/48 logical cores. Not all experiments require this. Checkout [Figaro](figaro-code/README.MD) for more.
 
 - Clone a repository from the account with the abovementioned details. Checkout to the branch Sigmod-2022-Repro that contains the code used in the reproducibility submission.
 - Move all the scripts from figaro-code/reproducibility to the current folder.
