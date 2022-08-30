@@ -27,7 +27,7 @@ NUMPY_PATH=/home/zivanovic
 ############# Cloning repository #########
 cd $FIGARO_PATH
 
-git clone --branch Sigmod-2022-Repro https://github.com/Sigmod2022ReproFigaro/figaro.git
+git clone --branch main-branch https://github.com/Sigmod2022ReproFigaro/figaro.git
 ln -s $FIGARO_DUMP_PATH ${FIGARO_PATH}/figaro-code/dumps
 cd $FIGARO_SCRIPTS_PATH
 
