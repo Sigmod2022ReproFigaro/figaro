@@ -1,27 +1,65 @@
-The code and data provided in our repository are to be used exclusively for the purpose of reproducibility. They are not to be used in a different setting, for academic papers or industry setting without our explicit consent. Intruction details follow.\
-Required OS: Linux.\
-Required apps: Docker, bash.\
-Required machine: at least 500 GiB of free disk space, 192GiB of RAM, 24 physical/48 logical cores. Not all experiments require this. Checkout [Figaro](figaro-code/README.md) for more.
+# FIGARO-code
 
-- Download file figaro-code/reproducibility/repro.sh to your machine. 
-- Update DOCKER_DATA_PATH, DOCKER_DUMP_PATH, DOCKER_POSTGRES_PATH in the repro.sh script so they point to the appropriate paths on the local machine. These paths should have 500GB of free storage in total. For example (this is on our machine):
-```
-DOCKER_DATA_PATH=/local/scratch/Sigmod2022Repro/data/
-DOCKER_DUMP_PATH=/local/scratch/Sigmod2022Repro/dumps/
-DOCKER_POSTGRESS_PATH=/local/scratch/Sigmod2022Repro/postgresData/
-```
- where /local/scratch/Sigmod2022Repro has sufficient disk space. 
-- Then run: ./repro.sh and follow the instructions as the script asks:
-    1. The script will create a new docker container with docker local paths pointing to DUMP_PATH, DATA_PATH and POSTGRES_PATH (specified in the previous three variables).
-    2. The script will then create a new root in the docker container: zivanovic and the password specified on the prompt (PASSWORD).
-    3. Then the libraries will be installed in the docker container using library_setup.sh. At certain points the installation will require PASSWORD.
-    4. Experiments will be run as a script run_experiments.sh:
-        1. Cloning reproducibility repository to the docker container.
-        2. Setting up environments.
-        3. Downloading the data.
-        4. Evaluation of experiments alongside collecting the results and plotting the data as in the paper. The results will be located in the following path in the docker:
-        ```/home/zivanovic/Figaro/figaro-code/scripts/results```
-        and in the following path: 
-        ```./plots``` on the local machine. 
-        Non-ohe and ohe inside .dat files and .pdf files.
-        Synthetic: inside .tex files.
+This repository accompanies the submission "Givens QR Decomposition over Relational Databases" to SIGMOD 2022.
+
+The material and the data is made available for the review process only. Please do not store or share the data elsewhere.
+
+
+## Using the code
+
+Detailed instructions on how to set up the system and running the experiments can be found in this file: [Setup and running experiments](./USAGE.md)
+
+
+## Code organization
+
+We give an overview of the file structure of this repository.
+
+### 1. figaro
+This folder contains the implementation of the Figaro system and the postprocessing methods.
+The code is explained more in [Figaro](figaro/README.MD)
+
+### 2. scripts
+This folder contains Python scripts used for generating data as well as running and evaluating experiments.
+More explanations can be found in [scripts](scripts/README.MD)
+
+### 3. competitors
+
+This folder contains code for running numpy + (mkl or openblas).
+
+
+### 4. system_tests
+The directory system_tests contains the configuration files used in running each of the experiments. It has the following subfolders.
+
+- systems: contains configuration files for the systems that are used in the experiments, including psql, numpy+mkl and figaro.
+- test_syn_accur: contains the configuration files for testing the accuracy for synthetic data.
+- test_syn_perf: contains the configuration files for testing performance for synthetic data.
+- test_real_data: contains the configuration files for experiments over real datasets.
+- test_real_data_ohe: contains the configuration files for experiments over real datasets where one of join attributes is one hot encoded.
+
+Each of test_* folders has the following files and folders with json configurations:
+
+- folder databases: contains the schema specification of the databases used in the experiments, including the types of the attributes of the relations (categorical, double and int),  primary keys, and paths to the data.
+- folder queries: contains the query specifications of a join on which the QR decomposition is applied. In particular, it specifies a join tree. Further it  includes which attributes are discarded (skip_attributes), what is the number of threads used in Figaro system: (num_threads), and a order of relations in the join result. Such a relational order is always the preorder of the corresponding join order. It also can specify the order of attributes in each of the relations. This is used to swap places of certain join attributes.
+
+- folder dataset_conf: specifies which query is used for which database.
+
+- folder tests: specifies which systems are used on which datasets. For each of the systems we can specify whether we want to use one of the following modes: dump, performance, accuracy, performance_analysis.
+    - dump evaluates the corresponding systems only once and then dumps the data. In the case of PSQL and pandas this is a join result according to the configuration. For numpy and figaro this is R after the decomposition.
+    - performance evaluates the corresponding system for a number of times that is specified in the configuration files (standard: 5) and measures the execution times. Every time the system is evaluated as a separate process.
+    - accuracy compares R computed by that system to other systems. In particular, this is useful to check that Figaro works correctly on real datasets.
+    - performance_analysis parses the logs with evaluation times and creates xlsx with times. This was used in microbenchmarks to optimize the implementation of the algorithm.
+- file tess_specs.conf: specifies which groups of tests are evaluated.
+
+The "disable" property in each configuration file specifies whether the certain type is skipped.
+
+### 5. comparisons
+
+After an experiment is run, this folder contains the results of performance and accuracy analyses for each of the systems inside the corresponding folder. For example: for performance analysis for figaro with the postprocessing method "thin", the database DBFavorita10 and the join order StoresRoot48, the results are stored in path ./comparisons/performance/figaro/thin_diag/DbFavorita10/StoresRoot48/, in particular in the file time.xlsx
+
+### 6. logs (only after running experiments)
+
+After an experiment is run, this folder contains logs for each evaluation.
+
+### 7. dumps (only after running experiments)
+
+When an experiment is run, different systems dump data in this folder. This can be the computed matrix R, the join result, or other intermediate data.
