@@ -22,6 +22,9 @@ DOCKER_POSTGRESS_PATH=/local/scratch/Sigmod2022Repro/postgresData/
         4. Evaluation of experiments alongside collecting the results and plotting the data as in the paper. The results will be located in the following path in the docker:
         ```/home/zivanovic/Figaro/figaro-code/scripts/results```
         and in the following path: 
-        ```./plots``` on the local machine. 
-        Non-ohe and ohe inside .dat files and .pdf files.
-        Synthetic: inside .tex files.
+        ```./plots``` on the local machine.
+            1. Results for real datasets are in non-ohe subdirectory. exp1perf.pdf contains Figure 4 top. The corresponding times are in exp1perf-DATASE_NAME.dat. exp2threads.png contains Figure 6 where y axis shows times instead of speed ups. exp2cores.dat contains times for this experiment.\
+            exp3perf-DATASET_NAME.dat contains runtimes for different join orders used in experiment 3 where DATASET_NAME refers to the dataset name. RELATION_NAMERoot is used to name the corresponding join order where RELATION_NAME represents a root relation. For example, InvetoryRoot represent a join order where the relation Inventory is a root node (the same as in the paper I(L(C), W, T). Then, the speed up between the slowest and fastest can be checked manually.\
+            **Note**. The experiment 2 is ran for LocationRoot join order for Retailer, for StoresRoot join order for Favorita and BusinessRoot for Yelp. However, the script generates exp2cores.dat for the fastest join orders, and due to close runtimes of some orders (for example on our machine: BusinessRoot and HoursRoot 0.44s and 0.45s, respecitvely), the script can choose a wrong join order for the experiment 2. In that case, the times should be read from exp3perf-DATASET_NAME.dat. 
+            2. Results for OHE real datasets will be in a subdirectory ohe. The same file organization as with non-ohe datasets except there is no experiment 2. 
+            3. Synthetic: synthetic_perf.tex: Figure 5. synthetic_accur.tex: Table 3.  
