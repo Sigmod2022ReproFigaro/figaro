@@ -13,8 +13,8 @@ DOCKER_POSTGRESS_PATH=/local/scratch/Sigmod2022Repro/postgresData/
  where /local/scratch/Sigmod2022Repro has sufficient disk space. 
 - Then run: ./repro.sh and follow the instructions as the script asks:
     1. The script will create a new docker container with docker local paths pointing to DUMP_PATH, DATA_PATH and POSTGRES_PATH (specified in the previous three variables).
-    2. The script will then create a new root in the docker container: zivanovic and the password specified on the prompt (PASSWORD).
-    3. Then the libraries will be installed in the docker container using library_setup.sh. At certain points the installation will require PASSWORD.
+    2. The script will then create a new root in the docker container: zivanovic.
+    3. Then the libraries will be installed in the docker container using library_setup.sh.
     4. Experiments will be run as a script run_experiments.sh:
         1. Cloning reproducibility repository to the docker container.
         2. Setting up environments.
