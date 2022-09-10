@@ -5,6 +5,10 @@ FIGARO_DUMP_PATH=/figaroDumps
 FIGARO_DATA_PATH=/figaroData
 
 mkdir -p  {$LOCAL_PATH,$LOCAL_PATH/include,$LOCAL_PATH/bin,$LOCAL_PATH/lib,$DOWN_PATH}
+TZ=America/Los_Angeles
+sudo ln -snf /usr/share/zoneinfo/$TZ /etc/localtime
+echo $TZ | sudo tee  /etc/timezone
+
 sudo apt install --yes vim
 sudo apt install --yes cmake
 sudo apt install --yes build-essential wget m4 flex bison git unzip rsync libomp-dev
