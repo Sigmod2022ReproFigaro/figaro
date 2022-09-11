@@ -32,18 +32,19 @@ It contains the following files and directories:
         - post-processing on the join result: computeQR 
     - the folder query contains code files for join order specification including the join tree data structure and join tree node types, the join tree visitors and query evaluators.
         - visitors:
-            - [ASTJoinAttributesComputeVisitor.cpp](src/database/query/ASTJoinAttributesComputeVisitor.cpp). For a relation in a given join tree, this visitor computes its join attributes and the join attributes it has in common with its parent in the join tree. It is in charge of sorting a relation, changing the schema based on the query configuration, and one hot encoding categorical attributes.
-            - - [ASTBuildIndicesVisitor.cpp](src/database/query/ASTBuildIndicesVisitor.cpp) builds indices over different relations.
-            - [ASTComputeDownCountsVisitor.cpp](src/database/query/ASTComputeDownCountsVisitor.cpp) and [ASTComputeUpAndCircleCountsVisitor.cpp](src/database/query/ASTComputeUpAndCircleCountsVisitor.cpp) compute the count queries.
-            - [ASTFigaroFirstPassVisitor.cpp](src/database/query/ASTFigaroFirstPassVisitor.cpp) computes heads and tails of a relation, grouped by the values of the join attributes.
-            - [ASTFigaroSecondPassVisitor.cpp](src/database/query/ASTFigaroSecondPassVisitor.cpp) implements the bottom-up pass of figaro and upper-triangularizes the intermediate results.
-            - [ASTRightMultiplyVisitor.cpp](src/database/query/ASTRightMultiplyVisitor.cpp) implements the optimized multiplication of a natural join and another relation. 
-            - [ASTPostProcQRVisitor.cpp](src/database/query/ASTPostProcQRVisitor.cpp) implements the post-processing on the join result.
+            - [ASTJoinAttributesComputeVisitor.cpp](src/database/query/visitor/ASTJoinAttributesComputeVisitor.cpp). For a relation in a given join tree, this visitor computes its join attributes and the join attributes it has in common with its parent in the join tree. It is in charge of sorting a relation, changing the schema based on the query configuration, and one hot encoding categorical attributes.
+            - [ASTBuildIndicesVisitor.cpp](src/database/query/visitor/ASTBuildIndicesVisitor.cpp) builds indices over different relations.
+            - [ASTComputeDownCountsVisitor.cpp](src/database/query/visitor/ASTComputeDownCountsVisitor.cpp) and [ASTComputeUpAndCircleCountsVisitor.cpp](src/database/query/visitor/ASTComputeUpAndCircleCountsVisitor.cpp) compute the count queries.
+            - [ASTFigaroFirstPassVisitor.cpp](src/database/query/visitor/ASTFigaroFirstPassVisitor.cpp) computes heads and tails of a relation, grouped by the values of the join attributes.
+            - [ASTFigaroSecondPassVisitor.cpp](src/database/query/visitor/ASTFigaroSecondPassVisitor.cpp) implements the bottom-up pass of figaro and upper-triangularizes the intermediate results.
+            - [ASTRightMultiplyVisitor.cpp](src/database/query/visitor/ASTRightMultiplyVisitor.cpp) implements the optimized multiplication of a natural join and another relation. 
+            - [ASTPostProcQRVisitor.cpp](src/database/query/visitor/ASTPostProcQRVisitor.cpp) implements the post-processing on the join result.
         - join tree node type specifications:
-            - [ASTNodeJoin.cpp](src/database/query/ASTNodeJoin.cpp) specifies a join tree node with children
-            - ASTNodeRelation.cpp gives the relation that is associated with a join tree node.
-            - ASTNodePostProcQR.cpp [ASTNodePostProcQR.cpp](src/database/query/ASTNodePostProcQR.cpp) as a root of the join tree specifies that post-processing is applied on the join result.
-            - ASTNodeQRGivens.cpp [ASTNodeQRGivens.cpp](src/database/query/ASTNodeQRGivens.cpp) as a root of the join tree specifies that post-processing is applied on the factorized data represented in the join tree.
+            - [ASTNodeJoin.cpp](src/database/query/node/ASTNodeJoin.cpp) specifies a join tree node with children
+            - [ASTNodeRelation.cpp](src/database/query/node/ASTNodeRelation.cpp) gives the relation that is associated with a join tree node.
+            -  [ASTNodePostProcQR.cpp](src/database/query/node/ASTNodePostProcQR.cpp) as a root of the join tree specifies that post-processing is applied on the join result.
+            - [ASTNodeQRGivens.cpp](src/database/query/node/ASTNodeQRGivens.cpp) as a root of the join tree specifies that post-processing is applied on the factorized data represented in the join tree.
+	    - [ASTNodeRightMultiply.cpp](src/database/query/node/ASTNodeRightMultiply.cpp) as a root of abstract syntax tree that specifies a multiplication of a natural join and a relation. 
         - The query evaluator evaluates the query specified by the join tree. If the root is ASTNodePostProcQR it assumes there is only one more node in the join tree: a relational node that holds the result of a join.
 
             If the root is ASTNodeQRGivens it uses different visiting orders depending on the visitor.  ASTJoinAttributesComputeVisitor, DoDownCountsVisitor, ASTFigaroFirstPassVisitor, ASTFigaroSecondPassVisitor use postorder, while ASTComputeDownCountsVisitor uses preorder.
@@ -55,7 +56,9 @@ It contains the following files and directories:
         - computeQRGivensSequentialBlockDiag: applying sequences of Givens rotation sequentially to upper-triangularize the matrix 
         - computeQRGivensParallelBlockDiag: parallelized version of computeQRGivensSequentialBlockDiag
         - computeQRGivensParallelizedThinMatrix: apply the "thin" approach of computing R: split matrix in blocks of rows, upper-triangularize each of the blocks in parallel and then concatenate the intermediate Rs and again apply computeQRGivensSequentialBlockDiag.
-        - computeQRGivensParallelizedLaPack: compute R using MKL lapack API dgeqrf.
+        - computeQRLapack: compute R using MKL lapack API dgeqrf.
         - makeDiagonalElementsPositiveInR: changes the signs of the entries in some columns to make the diagonal entries positive.
+	- multiply: multiplies two matrices. 
+	- computeInverse: computes an inverse for either upper triangular matrices or for an arbitrary square matrices. 
 - build: stores binary files;
 - the folders dump and log have the same purpose as the folders with the same name in the root directory;
