@@ -6,11 +6,11 @@ Required machine: at least 500 GiB of free disk space, 192GiB of RAM, 24 physica
 - Download file figaro-code/reproducibility/repro.sh to your machine. 
 - Update DOCKER_DATA_PATH, DOCKER_DUMP_PATH, DOCKER_POSTGRES_PATH in the repro.sh script so they point to the appropriate paths on the local machine. These paths should have 500GB of free storage in total. For example (this is on our machine):
 ```
-DOCKER_DATA_PATH=/local/scratch/Sigmod2022Repro/data/
-DOCKER_DUMP_PATH=/local/scratch/Sigmod2022Repro/dumps/
-DOCKER_POSTGRESS_PATH=/local/scratch/Sigmod2022Repro/postgresData/
+DOCKER_DATA_PATH=/local/scratch/Sigmod2023Figaro/data/
+DOCKER_DUMP_PATH=/local/scratch/Sigmod2023Figaro/dumps/
+DOCKER_POSTGRESS_PATH=/local/scratch/Sigmod2023Figaro/postgresData/
 ```
- where /local/scratch/Sigmod2022Repro has sufficient disk space. 
+ where /local/scratch/Sigmod2023Figaro has sufficient disk space. 
 - Then run: ./repro.sh:
     1. The script will create a new docker container with local docker paths pointing to DUMP_PATH, DATA_PATH and POSTGRES_PATH on the machine (specified in the previous three variables).
     2. The script will then create a new root in the docker container: zivanovic.
