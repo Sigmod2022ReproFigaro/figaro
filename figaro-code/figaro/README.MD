@@ -33,9 +33,11 @@ It contains the following files and directories:
     - the folder query contains code files for join order specification including the join tree data structure and join tree node types, the join tree visitors and query evaluators.
         - visitors:
             - [ASTJoinAttributesComputeVisitor.cpp](src/database/query/ASTJoinAttributesComputeVisitor.cpp). For a relation in a given join tree, this visitor computes its join attributes and the join attributes it has in common with its parent in the join tree. It is in charge of sorting a relation, changing the schema based on the query configuration, and one hot encoding categorical attributes.
+            - - [ASTBuildIndicesVisitor.cpp](src/database/query/ASTBuildIndicesVisitor.cpp) builds indices over different relations.
             - [ASTComputeDownCountsVisitor.cpp](src/database/query/ASTComputeDownCountsVisitor.cpp) and [ASTComputeUpAndCircleCountsVisitor.cpp](src/database/query/ASTComputeUpAndCircleCountsVisitor.cpp) compute the count queries.
             - [ASTFigaroFirstPassVisitor.cpp](src/database/query/ASTFigaroFirstPassVisitor.cpp) computes heads and tails of a relation, grouped by the values of the join attributes.
             - [ASTFigaroSecondPassVisitor.cpp](src/database/query/ASTFigaroSecondPassVisitor.cpp) implements the bottom-up pass of figaro and upper-triangularizes the intermediate results.
+            - [ASTRightMultiplyVisitor.cpp](src/database/query/ASTRightMultiplyVisitor.cpp) implements the optimized multiplication of a natural join and another relation. 
             - [ASTPostProcQRVisitor.cpp](src/database/query/ASTPostProcQRVisitor.cpp) implements the post-processing on the join result.
         - join tree node type specifications:
             - [ASTNodeJoin.cpp](src/database/query/ASTNodeJoin.cpp) specifies a join tree node with children
@@ -44,7 +46,7 @@ It contains the following files and directories:
             - ASTNodeQRGivens.cpp [ASTNodeQRGivens.cpp](src/database/query/ASTNodeQRGivens.cpp) as a root of the join tree specifies that post-processing is applied on the factorized data represented in the join tree.
         - The query evaluator evaluates the query specified by the join tree. If the root is ASTNodePostProcQR it assumes there is only one more node in the join tree: a relational node that holds the result of a join.
 
-            If the root is ASTNodeQRGivens it uses different visiting orders depending on the visitor.  ASTJoinAttributesComputeVisitor, ASTComputeDownCountsVisitor, ASTFigaroFirstPassVisitor, ASTFigaroSecondPassVisitor use postorder, while ASTComputeDownCountsVisitor uses preorder.
+            If the root is ASTNodeQRGivens it uses different visiting orders depending on the visitor.  ASTJoinAttributesComputeVisitor, DoDownCountsVisitor, ASTFigaroFirstPassVisitor, ASTFigaroSecondPassVisitor use postorder, while ASTComputeDownCountsVisitor uses preorder.
 - the folder include stores header files for the corresponding source files. Additional files are inside utils (for error handling, logging and benchmarking) and database/storage. In particular, ArrayStorage.h specifies an inlined data structure that is used for storing data and Matrix.h specifies a matrix data structure in row-major order. It implements the following functions:
 :
 	- computeQRGivens: several approaches for computing the QR computation
