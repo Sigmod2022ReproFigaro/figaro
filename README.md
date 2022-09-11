@@ -11,7 +11,7 @@ DOCKER_DUMP_PATH=/local/scratch/Sigmod2022Repro/dumps/
 DOCKER_POSTGRESS_PATH=/local/scratch/Sigmod2022Repro/postgresData/
 ```
  where /local/scratch/Sigmod2022Repro has sufficient disk space. 
-- Then run: ./repro.sh and follow the instructions as the script asks:
+- Then run: ./repro.sh:
     1. The script will create a new docker container with docker local paths pointing to DUMP_PATH, DATA_PATH and POSTGRES_PATH (specified in the previous three variables).
     2. The script will then create a new root in the docker container: zivanovic.
     3. Then the libraries will be installed in the docker container using library_setup.sh.
