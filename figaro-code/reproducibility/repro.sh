@@ -30,4 +30,4 @@ docker cp run_experiments.sh $DOCK_CID:/$HOME_PATH/run_experiments.sh
 
 docker exec --user zivanovic -ti $DOCK_CID bash $HOME_PATH/library_setup.sh | tee log_lib_setup.txt
 docker exec --user zivanovic -ti $DOCK_CID bash $HOME_PATH/run_experiments.sh | tee log_run_exp.txt
-docker cp $DOCK_CID:/home/zivanovic/Figaro/figaro/figaro-code/scripts/results ./plots
+docker cp $DOCK_CID:/home/zivanovic/Figaro/figaro-code/scripts/results ./plots
