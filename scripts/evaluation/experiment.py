@@ -69,11 +69,11 @@ def run_exp1(username: str, password: str, root_path: str,
     args = ["-p", password, "-u", username, "-r", root_path,
                "-s", system_tests_path]
     args_real_data = args + ["--test", "_real_data"]
-    args_real_data_ohe = args + ["--test", "_real_data_ohe"]
+    #args_real_data_ohe = args + ["--test", "_real_data_ohe"]
     args_perf_syn = args + ["--test", "_syn_perf"]
 
     eval.main(args_real_data)
-    eval.main(args_real_data_ohe)
+    #eval.main(args_real_data_ohe)
     eval.main(args_perf_syn)
 
     args_coll = ["--root_path", root_path,
@@ -83,7 +83,7 @@ def run_exp1(username: str, password: str, root_path: str,
     args_coll_syn = ["--root_path", root_path, "--dump_results"]
 
     perf_percent.main(args_coll)
-    perf_percent.main(args_coll_ohe)
+    #perf_percent.main(args_coll_ohe)
     syn_perf.main(args_coll_syn)
 
 
@@ -122,16 +122,16 @@ def run_exp3(username: str, password: str, root_path: str,
     args = ["-p", password, "-u", username, "-r", root_path,
                "-s", system_tests_path]
     args_real_data = args + ["--test", "_real_data"]
-    args_real_data_ohe = args + ["--test", "_real_data_ohe"]
+    #args_real_data_ohe = args + ["--test", "_real_data_ohe"]
 
     eval.main(args_real_data)
-    eval.main(args_real_data_ohe)
+    #eval.main(args_real_data_ohe)
 
     args_coll = ["--root_path", root_path,
         "--exp_name", "figaro_thin", "--dump_results"]
     args_coll_ohe = args_coll + ["--ohe"]
     perf_join_ord.main(args_coll)
-    perf_join_ord.main(args_coll_ohe)
+    #perf_join_ord.main(args_coll_ohe)
 
 
 def set_exp4_synt(system_tests_path: str):

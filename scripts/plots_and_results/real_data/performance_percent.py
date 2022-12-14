@@ -148,7 +148,7 @@ def main(args):
     end_per = 100
     per_inc = 10
 
-    num_measurement = 21
+    num_measurement = 5
 
     df_measurement_exps = collect_times(ohe, root_path, exp_names, db_names,
         exp_paths, join_orders, start_per, end_per, per_inc,

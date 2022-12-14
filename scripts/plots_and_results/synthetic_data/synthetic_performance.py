@@ -130,7 +130,9 @@ def main(args):
     row_nums = [512, 1024, 2048, 4096, 8192]
     row_col_nums = []
 
-    skip_dbs = {"mkl": [12, 15, 16, 18, 19, 20], "postprocess_mkl": [12, 15, 16, 18, 19, 20],"figaro_thin": [],  "figaro_lapack":[]}
+    #skip_dbs = {"mkl": [12, 15, 16, 18, 19, 20], "postprocess_mkl": [12, 15, 16, 18, 19, 20],"figaro_thin": [],  "figaro_lapack":[]}
+    skip_dbs = {"mkl": [12, 13, 14, 15, 16, 17, 18, 19, 20], "postprocess_mkl": [12, 13, 14, 15, 16, 17, 18, 19, 20],
+        "figaro_thin": [],  "figaro_lapack":[]}
 
     for row_num in row_nums:
         for col_num in column_nums:
