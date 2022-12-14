@@ -27,6 +27,7 @@ NUMPY_PATH=/home/zivanovic
 ############# Cloning repository #########
 cd $FIGARO_PATH
 
+sudo rm figaro-code -rf
 git clone --branch code-branch https://github.com/Sigmod2022ReproFigaro/figaro.git figaro-code
 ln -s $FIGARO_DUMP_PATH ${FIGARO_CODE_PATH}/dumps
 cd $FIGARO_SCRIPTS_PATH
@@ -48,7 +49,7 @@ $NUMPY_PATH/numpy-mkl/setup.py install
 #deactivate
 
 ########## Download data #############
-#python -m data_management.data_formating -r $FIGARO_CODE_PATH -d $FIGARO_DATA_PATH -s $FIGARO_SYSTEMS_TESTS_PATH --backup
+python -m data_management.data_formating -r $FIGARO_CODE_PATH -d $FIGARO_DATA_PATH -s $FIGARO_SYSTEMS_TESTS_PATH --backup
 #python -m evaluation.data_generation -u $FIGARO_PSQL_USER -p $FIGARO_PSQL_PASSWORD  -s $FIGARO_SYSTEMS_TESTS_PATH -d $FIGARO_DATA_PATH --data_type #download_real_data
 #python -m evaluation.data_generation -u $FIGARO_PSQL_USER -p $FIGARO_PSQL_PASSWORD  -s $FIGARO_SYSTEMS_TESTS_PATH -d $FIGARO_DATA_PATH --data_type all
 ############# Run experiments ###########
