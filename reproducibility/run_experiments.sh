@@ -8,9 +8,9 @@ mkdir -p ${FIGARO_PATH}
 #cd $FIGARO_DATA_PATH
 #rm * -rf
 #sudo chown zivanovic $FIGARO_DATA_PATH
-#cd $FIGARO_DUMP_PATH
-#rm * -rf
-#sudo chown zivanovic $FIGARO_DUMP_PATH
+cd $FIGARO_DUMP_PATH
+rm * -rf
+sudo chown zivanovic $FIGARO_DUMP_PATH
 
 ln -s $FIGARO_DATA_PATH ${FIGARO_PATH}/data
 

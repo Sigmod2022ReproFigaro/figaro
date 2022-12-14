@@ -111,7 +111,7 @@ def dump_results_to_dat(ohe: bool, db_names: list, df_measurement_exps: dict,
     out_name = os.path.join(dir_out, exp_dat_name)
     file_out_name = os.path.join(dir_out, file_out_name)
     df_db_results.to_csv(out_name, float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
-    df_db_results.to_csv(file_out_name, mode='a' float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
+    df_db_results.to_csv(file_out_name, mode='a', float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
 
 
 def plot_performance(ohe: bool, db_names: list, df_measurement_exp_dbs: dict, thread_nums_exp: dict):
@@ -203,7 +203,7 @@ def main(args):
 
     db_names = ["DBRetailer", "DBFavorita", "DBYelp"]
 
-    num_measurement = 21
+    num_measurement = 5
 
     df_measurement_exps = collect_times(ohe, root_path, exp_name, db_names,
         exp_paths, join_orders, thread_nums_exp,

@@ -116,7 +116,7 @@ def main(args):
     root_path = args.root_path
     dump_results = args.dump_results
 
-    num_measurement = 21
+    num_measurement = 5
 
 
     figaro_impls = ["figaro_thin", "figaro_lapack"]
