@@ -80,7 +80,7 @@ def dump_results_to_dat(ohe: bool, db_names: list, df_measurement_exps: dict):
         dir_out = os.path.join(dir_out_root, dir_out)
         os.makedirs(dir_out, exist_ok=True)
         out_name = os.path.join(dir_out, db_name_map[db_name])
-        file_out_name = os.path.join(dir_out, out_name)
+        file_out_name = os.path.join(dir_out, file_out_name)
         df_db_results.to_csv(out_name, float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
         df_db_results.to_csv(file_out_name, mode='a', float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
 
