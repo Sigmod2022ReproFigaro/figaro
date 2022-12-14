@@ -79,7 +79,7 @@ def collect_times(root_path: str, column_nums: list,
 
 def dump_results_to_latex(figaro_impls: list, df_measurement_exps: dict):
     root_dir = "results/synthetic"
-    out_path = os.path.join(root_dir, "synthetic_perf.tex")
+    out_path = os.path.join(root_dir, "exp1syn.txt")
     os.makedirs(root_dir, exist_ok=True)
     out_file = open(out_path, "w")
 

@@ -64,6 +64,7 @@ def dump_results_to_dat(ohe: bool, db_names: list, df_measurement_exps: dict):
     "DBRetailer": "exp1perf-retailer.dat",
     "DBYelp": "exp1perf-yelp.dat"
     }
+    file_out_name = "exp1.txt"
     exp_dat_names = ["#percentage of data", "figaro-time", "mkl-time", "postproc-thin-time"]
     exp_to_show = ["figaro_thin", "post_proc_mkl", "post_proc_thin"]
 
@@ -79,7 +80,9 @@ def dump_results_to_dat(ohe: bool, db_names: list, df_measurement_exps: dict):
         dir_out = os.path.join(dir_out_root, dir_out)
         os.makedirs(dir_out, exist_ok=True)
         out_name = os.path.join(dir_out, db_name_map[db_name])
+        file_out_name = os.path.join(dir_out, out_name)
         df_db_results.to_csv(out_name, float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
+        df_db_results.to_csv(file_out_name, mode='a', float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
 
 def plot_performance(ohe: bool, exp_names: list,
         df_measurement_exps: dict):

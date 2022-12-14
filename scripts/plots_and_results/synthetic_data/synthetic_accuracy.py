@@ -86,7 +86,7 @@ def dump_results_to_latex(exp_names: list, figaro_impls: list,
         exp_rel_errors: dict):
 
     root_dir = "results/synthetic"
-    out_path = os.path.join(root_dir, "synthetic_accur.tex")
+    out_path = os.path.join(root_dir, "exp4.txt")
     os.makedirs(root_dir, exist_ok=True)
     out_file = open(out_path, "w")
 

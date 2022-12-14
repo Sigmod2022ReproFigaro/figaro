@@ -83,6 +83,7 @@ def dump_results_to_dat(ohe: bool, db_names: list, df_measurement_exps: dict,
         "DBRetailer": "exp3perf-retailer.dat",
         "DBYelp": "exp3perf-yelp.dat"
     }
+    file_out_name = "exp2and3.txt"
 
     for db_name in db_names:
         df_measurement = df_measurement_exps[(exp_name, db_name)]
@@ -108,7 +109,9 @@ def dump_results_to_dat(ohe: bool, db_names: list, df_measurement_exps: dict,
     dir_out = os.path.join(dir_out_root, dir_out)
     os.makedirs(dir_out, exist_ok=True)
     out_name = os.path.join(dir_out, exp_dat_name)
+    file_out_name = os.path.join(dir_out, file_out_name)
     df_db_results.to_csv(out_name, float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
+    df_db_results.to_csv(file_out_name, mode='a' float_format='%.2f', sep='\t', index=False, quoting=csv.QUOTE_NONE,  escapechar=" ")
 
 
 def plot_performance(ohe: bool, db_names: list, df_measurement_exp_dbs: dict, thread_nums_exp: dict):
